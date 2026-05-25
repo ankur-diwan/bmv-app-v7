@@ -7,8 +7,9 @@ RUN npm install
 
 COPY . .
 
-# Set backend API URL at build time for Code Engine deployment
-ENV VITE_API_URL=https://banking-validation-backend.243hkitbzigu.us-east.codeengine.appdomain.cloud
+# Accept backend API URL as build argument for flexible deployment
+ARG VITE_API_URL
+ENV VITE_API_URL=${VITE_API_URL}
 
 RUN npm run build
 
