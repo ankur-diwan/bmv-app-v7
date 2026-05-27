@@ -30,7 +30,7 @@ import {
   Error as ErrorIcon,
   InsertDriveFile,
 } from '@mui/icons-material';
-import axios from 'axios';
+import apiClient from '../services/api';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
@@ -151,8 +151,8 @@ const DocumentUpload = ({ onDocumentsUploaded, onError }) => {
         formData.append('files', fileObj.file);
       });
 
-      const response = await axios.post(
-        `${API_BASE_URL}/api/upload-documents`,
+      const response = await apiClient.post(
+        '/api/upload-documents',
         formData,
         {
           headers: {
